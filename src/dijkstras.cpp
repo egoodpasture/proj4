@@ -18,7 +18,7 @@ struct Node {
     }
 };
 
-int main() {
+int main(int argc, char *argv[]) {
     int tiles_n;
     cin >> tiles_n;
 
@@ -110,8 +110,3 @@ int main() {
 
     return 0;
 }
-
-/*int main(int argc, char *argv[]) {
-    return 0;
-}*/
-
