@@ -13,13 +13,14 @@ using namespace std;
 
 struct Node {
     int row, col, cost;
-    bool operator>(const Node &other) const {
+    // Overload the operator to allow us to compare nodes
+	bool operator>(const Node &other) const {
         return cost > other.cost;
     }
 };
 
 int main(int argc, char **argv) {
-    // Step 1: Read number of different tiles
+    //  Read number of different tiles
     int num_tiles;
     cin >> num_tiles;
 
@@ -32,7 +33,7 @@ int main(int argc, char **argv) {
         tile_costs[tile] = cost;
     }
 
-    // Step 2: Read map size (rows and columns)
+    // Read map size (rows and columns)
     int rows, cols;
     cin >> rows >> cols;
 
@@ -44,11 +45,11 @@ int main(int argc, char **argv) {
         }
     }
 
-    // Step 3: Read the starting and ending positions of the runner
+    // Read the starting and ending positions of the runner
     int start_row, start_col, end_row, end_col;
     cin >> start_row >> start_col >> end_row >> end_col;
 
-    // Step 4: Set up Dijkstra's algorithm
+    // Set up Dijkstra's algorithm
     vector<vector<int>> dist(rows, vector<int>(cols, INT_MAX));
     vector<vector<pair<int, int>>> prev(rows, vector<pair<int, int>>(cols, {-1, -1}));
     priority_queue<Node, vector<Node>, greater<Node>> pq;
@@ -94,7 +95,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    // Step 5: Reconstruct the path
+    // Reconstruct the path
     vector<pair<int, int>> path;
     int r = end_row, c = end_col;
     while (r != -1 && c != -1) {
@@ -105,7 +106,7 @@ int main(int argc, char **argv) {
     // Reverse the path so we can print it from start to end
     reverse(path.begin(), path.end());
 
-    // Step 6: Output the result
+    // Output the result
     cout << dist[end_row][end_col] << endl;
     for (auto p : path) {
         cout << p.first << " " << p.second << endl;
